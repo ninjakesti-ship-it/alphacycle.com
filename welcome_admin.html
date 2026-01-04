@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Admin | AlphaFuel</title>
+    <style>
+        /* Dark Theme Styles with Cyan and Green */
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Very dark background */
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome-container {
+            background-color: #1e1e1e; /* Card dark background */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        h3 {
+            font-weight: normal;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #00bcd4; /* Vibrant cyan */
+            font-weight: bold;
+        }
+        
+        .icon-text {
+            font-size: 1.2rem;
+            color: #2ecc71; /* Vibrant green */
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .icon-text span {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .admin-actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .admin-actions a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #2ecc71; /* Vibrant green button */
+            color: #121212;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .admin-actions a:hover {
+            background-color: #27ad60;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-container">
+        <h1>Welcome, <span class="highlight">Admin</span>!</h1>
+        <h3>Manage your <span class="highlight">Alpha Cycles</span> store with the tools on the left.</h3>
+        <p class="icon-text">
+            <span>⚙️</span> Select an option from the sidebar to get started.
+        </p>
+    </div>
+
+</body>
+</html>

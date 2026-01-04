@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us - Alpha Fuel Cycles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Smooth transition for the header */
+header {
+    /* Existing styles */
+    transition: box-shadow 0.5s ease-in-out, transform 0.3s ease-in-out;
+}
+header:hover {
+    box-shadow: 0 0 30px #00f7ff;
+    transform: translateY(-5px);
+}
+
+/* Add hover effect to mission and feature boxes */
+.mission-box, .feature-box {
+    /* Existing styles */
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+.mission-box:hover, .feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(0,247,255,0.5);
+}
+
+/* Subtle effect for the highlight span */
+.highlight {
+    transition: color 0.3s ease-in-out;
+}
+.mission-box:hover .highlight {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+/* Animate the underline effect on links */
+a {
+    position: relative;
+    overflow: hidden;
+    /* Existing styles */
+}
+a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background-color: #00f7ff;
+    transition: left 0.4s ease-in-out;
+}
+a:hover::after {
+    left: 0;
+}
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      line-height: 1.6;
+      background-color: #0a0a0a;
+      color: #d4f1f9;
+    }
+    header {
+      background: #0d0d0d;
+      color: #00f7ff;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 0 20px #00f7ff;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 0 0 10px #00f7ff;
+    }
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #84f9ff;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .highlight {
+      color: #00f7ff;
+      font-weight: bold;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      color: #00f7ff;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px #00f7ff;
+    }
+    .mission-box {
+      background-color: #111;
+      padding: 25px;
+      border-left: 5px solid #00f7ff;
+      box-shadow: 0 0 15px rgba(0,247,255,0.3);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-box {
+      background: #141414;
+      padding: 20px;
+      border-radius: 8px;
+      border-top: 4px solid #00f7ff;
+      box-shadow: 0 0 12px rgba(0,247,255,0.2);
+    }
+    .feature-box h3 {
+      margin-top: 0;
+      color: #00f7ff;
+    }
+    footer {
+      background: #0d0d0d;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      border-top: 1px solid #111;
+    }
+    a {
+      color: #00f7ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-shadow: 0 0 5px #00f7ff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>About Alpha Fuel Cycles</h1>
+  <p>Your ride, redefined.</p>
+</header>
+
+<div class="container">
+  <div class="section">
+    <div class="mission-box">
+      <h2>Our Mission</h2>
+      <p>At <span class="highlight">Alpha Cycles</span>, our mission is to provide cyclists of all levels with premium, reliable, and performance-driven cycles. We believe in delivering not just bikes, but experiences that fuel your journey – whether it's a weekend trail ride or a daily commute.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose Us?</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>Top Brands</h3>
+        <p>We stock a wide range of bikes from the most trusted and high-performing brands in the world.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Premium Quality</h3>
+        <p>Every cycle is tested for durability, comfort, and style before it reaches your doorstep.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Fast Delivery</h3>
+        <p>We ensure safe packaging and speedy delivery so your cycling adventures don’t have to wait.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What We Offer</h2>
+    <p>From mountain bikes and road bikes to hybrids and ebikes’ bikes, Alpha Fuel brings a curated collection to meet every cycling need. With detailed product listings, live stock updates, and a smooth checkout experience, buying your next bike is easier than ever.</p>
+  </div>
+</div>
+
+
+
+<footer>
+  &copy; 2025 Alpha Fuel Cycles. All rights reserved.
+</footer>
+
+</body>
+</html>

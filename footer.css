@@ -1,0 +1,160 @@
+/* Footer Container */
+.site-footer {
+  background-color: #151515;
+  color: #ccc;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Flex layout for columns */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Each column */
+.footer-column {
+  flex: 1 1 250px;
+}
+
+/* Headings in cyan */
+.footer-column h4 {
+  color: #00ffff; /* Cyan */
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Policy links */
+.policy-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.policy-links li {
+  margin-bottom: 10px;
+}
+
+.policy-links a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.policy-links a:hover {
+  color: #00ffff; /* Cyan on hover */
+}
+
+/* Social icons */
+.social-icons a {
+  color: #00ffff;
+  font-size: 18px;
+  margin-right: 12px;
+  text-decoration: none;
+}
+
+/* Newsletter */
+.newsletter-form {
+  display: flex;
+  margin-top: 10px;
+}
+
+.newsletter-form input[type="email"] {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+}
+
+.newsletter-form button {
+  background-color: #00ffff;
+  color: #000;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.newsletter-form button:hover {
+  background-color: #00cccc;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  color: #888;
+  font-size: 5px;
+}
+
+.footer-bottom img {
+  margin-top: 5px;
+  height: 30px; /* Reduced height */
+  width: auto;
+  vertical-align: middle;
+}
+
+.faq-wrapper {
+  width: 100%;
+  background-color: #111; /* match footer background */
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.faq {
+  max-width: 900px;
+  width: 100%;
+  color: white;
+}
+
+.faq-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: white;
+}
+
+.faq-item {
+  border-bottom: 1px solid #444;
+  padding: 20px 0;
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-weight: bold;
+  color: cyan;
+}
+
+.faq-answer {
+  display: none;
+  color: #ccc;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+

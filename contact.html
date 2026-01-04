@@ -1,0 +1,320 @@
+<?php
+// Include the database connection file
+include 'db_connect.php';
+
+$status_message = '';
+$status_type = ''; // 'success' or 'error'
+
+// Initialize variables to keep form data sticky (preserve user input on error)
+$name = '';
+$email = '';
+$subject = '';
+$message = '';
+
+// --- Handle Form Submission ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sanitize and assign inputs
+    $name = isset($_POST['name']) ? trim($_POST['name']) : '';
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $subject = isset($_POST['subject']) ? trim($_POST['subject']) : '';
+    $message = isset($_POST['message']) ? trim($_POST['message']) : '';
+
+    // Basic Validation
+    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+        $status_message = "Please fill in all required fields.";
+        $status_type = "error";
+    } else {
+        // Prepare SQL Statement to prevent SQL Injection
+        $stmt = $conn->prepare("INSERT INTO contacts (name, email, subject, message, created_at) VALUES (?, ?, ?, ?, NOW())");
+        
+        if ($stmt) {
+            $stmt->bind_param("ssss", $name, $email, $subject, $message);
+            
+            if ($stmt->execute()) {
+                $status_message = "Message sent successfully! We will contact you soon.";
+                $status_type = "success";
+                
+                // Clear form fields on success
+                $name = $email = $subject = $message = '';
+            } else {
+                $status_message = "Database error: " . $stmt->error;
+                $status_type = "error";
+            }
+            $stmt->close();
+        } else {
+            $status_message = "Failed to prepare the database statement.";
+            $status_type = "error";
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - AlphaFuel Cycles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script> 
+  <style>
+    /* --- Original Custom CSS --- */
+    
+    header {
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+    header:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px #00ffff;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      transition: all 0.3s ease-in-out;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 8px #00ffff;
+      outline: none;
+      transform: scale(1.02);
+    }
+
+    .contact-form button {
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-form button:hover {
+      background-color: #00d0d0;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .contact-info {
+      transition: all 0.4s ease-in-out;
+    }
+    .contact-info:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+      border-color: #00ffff;
+    }
+
+    iframe {
+      transition: all 0.4s ease-in-out;
+    }
+    iframe:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px #00ffff;
+      border: 2px solid #00ffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0d0d0d;
+      color: #00ffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      padding: 50px 20px;
+      text-align: center;
+      color: #00ffff;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #1a1a1a;
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+      border-radius: 8px;
+      flex: 1;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #00ffff;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      background: #000;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-form input:hover,
+    .contact-form textarea:hover {
+      border-color: #00ffff;
+      box-shadow: 0 0 5px #00ffff;
+    }
+
+    .contact-form button {
+      background-color: #00ffff;
+      color: #000;
+      padding: 12px 24px;
+      border: none;
+      margin-top: 20px;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .contact-form button:hover {
+      background-color: #00d0d0;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 280px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-info:hover {
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .contact-info h3 {
+      margin-bottom: 10px;
+      color: #00ffff;
+    }
+
+    .contact-info p {
+      margin-bottom: 15px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px #00ffff;
+      transition: box-shadow 0.3s ease, border 0.3s ease;
+    }
+
+    iframe:hover {
+      box-shadow: 0 0 25px #00ffff;
+      border: 2px solid #00ffff;
+    }
+
+    @media (max-width: 768px) {
+      .contact-wrapper {
+        flex-direction: column;
+      }
+    }
+
+    /* Status Message Styles */
+    #status-message {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 600;
+        /* Hidden by default unless PHP injects content */
+        display: <?php echo !empty($status_message) ? 'block' : 'none'; ?>;
+    }
+    .status-success {
+        background-color: rgba(0, 255, 255, 0.1);
+        border: 1px solid #00ffff;
+        color: #00ffff;
+    }
+    .status-error {
+        background-color: rgba(255, 0, 0, 0.1);
+        border: 1px solid #ff4444;
+        color: #ff4444;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Contact Alpha Cycles</h1>
+  <p>We're here to help you ride better 🚴‍♂️</p>
+</header>
+
+<div class="container">
+  <div class="contact-wrapper">
+
+    <div class="contact-form">
+      <!-- PHP Form Submission: Submits to itself -->
+      <form action="" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="John Doe" 
+               value="<?php echo htmlspecialchars($name); ?>" required />
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="john@example.com" 
+               value="<?php echo htmlspecialchars($email); ?>" required />
+
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" placeholder="Inquiry about Model X" 
+               value="<?php echo htmlspecialchars($subject); ?>" required />
+
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" placeholder="How can we help you?" required><?php echo htmlspecialchars($message); ?></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+      
+      <!-- Status Message Area controlled by PHP -->
+      <div id="status-message" class="status-<?php echo $status_type; ?>">
+        <?php echo $status_message; ?>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <h3>Reach Us At</h3>
+      <p><strong>Email:</strong> support@alphafuelcycles.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Address:</strong> Alpha Cycles, Factory-4, MIDC road, Pune, India</p>
+
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0471115669!2d73.79292688756855!3d18.524598599502376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

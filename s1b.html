@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="elearningApp">
+<head>
+  <meta charset="UTF-8">
+  <title>E-Learning SPA</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+<body>
+  <h2>E-Learning System</h2>
+
+  <div ng-view></div>
+
+  <script>
+    var app = angular.module("elearningApp", ["ngRoute"]);
+
+    app.config(function($routeProvider) {
+      $routeProvider
+        .when("/", {
+          templateUrl: "courses.html",
+          controller: "CourseListCtrl"
+        })
+        .when("/course/:id", {
+          templateUrl: "course-detail.html",
+          controller: "CourseDetailCtrl"
+        })
+        .otherwise({ redirectTo: "/" });
+    });
+
+    app.controller("CourseListCtrl", function($scope) {
+      $scope.courses = [
+        { id: 1, title: "HTML Basics" },
+        { id: 2, title: "AngularJS Intro" },
+        { id: 3, title: "JavaScript Advanced" }
+      ];
+    });
+
+    app.controller("CourseDetailCtrl", function($scope, $routeParams) {
+      var courseId = $routeParams.id;
+      $scope.course = {
+        id: courseId,
+        title: "Course " + courseId,
+        content: "This is the content for course #" + courseId
+      };
+    });
+  </script>
+
+  <!-- Templates -->
+  <script type="text/ng-template" id="courses.html">
+    <h3>Course List</h3>
+    <ul>
+      <li ng-repeat="c in courses">
+        <a href="#!/course/{{c.id}}">{{c.title}}</a>
+      </li>
+    </ul>
+  </script>
+
+  <script type="text/ng-template" id="course-detail.html">
+    <h3>{{course.title}}</h3>
+    <p>{{course.content}}</p>
+    <a href="#!/">Back to courses</a>
+  </script>
+</body>
+</html>

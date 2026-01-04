@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="sybbaApp">
+<head>
+  <meta charset="UTF-8">
+  <title>SYBBA (CA) Syllabus</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+<body>
+  <h2>📘 SYBBA (CA) Syllabus</h2>
+  <div ng-view></div>
+
+  <script>
+    var app = angular.module("sybbaApp", ["ngRoute"]);
+
+    app.config(function($routeProvider) {
+      $routeProvider
+        .when("/", {
+          templateUrl: "subject-list.html",
+          controller: "SubjectListCtrl"
+        })
+        .when("/subject/:id", {
+          templateUrl: "subject-detail.html",
+          controller: "SubjectDetailCtrl"
+        })
+        .otherwise({ redirectTo: "/" });
+    });
+
+    app.controller("SubjectListCtrl", function($scope) {
+      $scope.subjects = [
+        { id: 1, name: "Business Communication" },
+        { id: 2, name: "Cost Accounting" },
+        { id: 3, name: "Database Management System" },
+        { id: 4, name: "Organizational Behavior" },
+        { id: 5, name: "Web Technology" }
+      ];
+    });
+
+    app.controller("SubjectDetailCtrl", function($scope, $routeParams) {
+      var syllabus = {
+        1: "Business Communication: Writing skills, Business letters, Report writing, Presentation skills.",
+        2: "Cost Accounting: Cost concepts, Budgeting, Marginal costing, Standard costing.",
+        3: "Database Management System: ER Models, SQL, Normalization, Transactions.",
+        4: "Organizational Behavior: Motivation, Leadership, Group dynamics, Organizational culture.",
+        5: "Web Technology: HTML, CSS, JavaScript, PHP basics, AngularJS introduction."
+      };
+      $scope.subject = {
+        name: ["Business Communication","Cost Accounting","Database Management System","Organizational Behavior","Web Technology"][$routeParams.id - 1],
+        content: syllabus[$routeParams.id]
+      };
+    });
+  </script>
+
+  <!-- Templates -->
+  <script type="text/ng-template" id="subject-list.html">
+    <h3>Subjects</h3>
+    <ul>
+      <li ng-repeat="s in subjects">
+        <a href="#!/subject/{{s.id}}">{{s.name}}</a>
+      </li>
+    </ul>
+  </script>
+
+  <script type="text/ng-template" id="subject-detail.html">
+    <h3>{{subject.name}}</h3>
+    <p><b>Syllabus:</b> {{subject.content}}</p>
+    <a href="#!/">⬅ Back to Subjects</a>
+  </script>
+</body>
+</html>

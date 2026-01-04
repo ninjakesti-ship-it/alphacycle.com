@@ -1,0 +1,291 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8f8f8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card img {
+  max-width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.card .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #ddd;
+  transition: background 0.3s;
+}
+
+.actions .buy {
+  background: #ff5722;
+  color: #fff;
+}
+
+.actions button:hover {
+  background: #bbb;
+}
+
+.actions .buy:hover {
+  background: #e64a19;
+}
+.site-footer {
+  background-color: #1c1c1c;
+  color: #f0f0f0;
+  padding: 2rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 3rem;
+  justify-content: space-between;
+}
+
+.footer-column {
+  min-width: 220px;
+  flex-shrink: 0;
+}
+
+.footer-column h4 {
+  color: orange;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  color: orange;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: orange;
+  text-decoration: none;
+}
+
+.newsletter-form {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.newsletter-form input {
+  background: #111;
+  border: none;
+  padding: 0.5rem;
+  color: white;
+  flex: 1;
+}
+
+.newsletter-form button {
+  background: orange;
+  border: none;
+  padding: 0 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.footer-bottom img {
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+    /* Product section */
+    #products {
+      padding: 3rem;
+      background: #f8f8f8;
+    }
+
+    #products h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: white;
+    }
+
+    .card img {
+      width: 80%;
+      height: 250px;
+      object-fit: contain;
+      background-color: #fff;
+      padding: 3px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: green;
+    }
+
+    .stock {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .actions button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .actions button.buy {
+      background-color: #28a745;
+    }
+
+    .actions button.add {
+      background-color: #007bff;
+    }
+     
+  
+
+.hero-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin: 40px 0 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 8px rgba(15, 15, 15, 0.7); /* Glow for contrast */
+}
+
+
+ button {
+  background: #000000;       /* Yellow background */
+  color: whitesmoke;               /* Black text for contrast */
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;        /* Rounded corners */
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #FFC300;       /* Slightly darker yellow on hover */
+  transform: scale(1.05);    /* Subtle hover zoom effect */
+}
